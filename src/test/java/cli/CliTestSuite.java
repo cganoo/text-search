@@ -35,11 +35,6 @@ public class CliTestSuite {
     public void tearDown() {
     }
 
-    @Test(expected = IllegalCliOptionException.class)
-    public void nullInput() {
-        new Cli().run(null, null);
-    }
-
     @Test(expected = UnsupportedCliOptionException.class)
     public void malfomedInput() {
         new Cli().run("");
