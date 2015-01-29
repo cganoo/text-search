@@ -1,5 +1,7 @@
 # text-search
 
+[![Build Status](https://travis-ci.org/cganoo/text-search.svg?branch=master)](https://travis-ci.org/cganoo/text-search)
+
 ## How to use this?
 
 ### Use the pre-compiled jar
