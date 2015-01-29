@@ -1,4 +1,4 @@
-package textsearch.api;
+package textsearch.utils;
 
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
@@ -6,12 +6,12 @@ import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import textsearch.utils.Constants;
 
 import java.util.List;
 import java.util.Map;
 
 /**
+ * Utility class to handle tokenization of documents and query strings
  * Created by cganoo on 28/01/15.
  */
 @Controller
@@ -19,9 +19,9 @@ public class Tokenizer {
     final static Logger log = LoggerFactory.getLogger(Tokenizer.class);
 
     /**
-     *
-     * @param document
-     * @return
+     * Tokenizes specified document
+     * @param document string to tokeninze
+     * @return map of tokenized fragments and ids
      */
     public Map<Integer, String> getTokenMap(final String document) {
         final Map<Integer, String> tokenMap = Maps.newHashMap();
@@ -38,10 +38,24 @@ public class Tokenizer {
     }
 
     /**
-     *
-     * @param s
-     * @param pattern
-     * @return
+     * Tokenizes a string and returns the tokens as a string list
+     * @param s string to tokenize
+     * @param pattern pattern to honor when tokenizing
+     * @return list of string tokens
+     */
+    public List<String> tokenize(final String s, final String pattern) {
+         final List<String> tokens = Lists.newArrayList(Splitter.onPattern(pattern)
+                .trimResults()
+                .omitEmptyStrings()
+                .split(s));
+        return tokens;
+    }
+
+    /**
+     * Tokenizes a string and returns the tokens as a char sequence
+     * @param s string to tokenize
+     * @param pattern pattern to honor when tokenizing
+     * @return char sequence of tokens
      */
     public CharSequence[] tokenizeAsCharSeq(final String s, final String pattern) {
         List<String> tokens = tokenize(s, pattern);
@@ -53,29 +67,15 @@ public class Tokenizer {
     }
 
     /**
-     *
-     * @param s
-     * @return
+     * Convenience method to convert a list of strings to a char sequence
+     * @param s string to tokenize
+     * @return char sequence of tokens
      */
-    public CharSequence[] convertListToCharSeq(final List<String> s) {
+    private CharSequence[] convertListToCharSeq(final List<String> s) {
         if( s == null || s.isEmpty()) {
             return null;
         } else {
             return s.toArray(new CharSequence[s.size()]);
         }
-    }
-
-    /**
-     *
-     * @param s
-     * @param pattern
-     * @return
-     */
-    public List<String> tokenize(final String s, final String pattern) {
-         final List<String> tokens = Lists.newArrayList(Splitter.onPattern(pattern)
-                .trimResults()
-                .omitEmptyStrings()
-                .split(s));
-        return tokens;
     }
 }

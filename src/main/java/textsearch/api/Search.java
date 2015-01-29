@@ -20,12 +20,14 @@ import textsearch.exceptions.SearchException;
 import textsearch.exceptions.UnsupportedSearchEngineException;
 import textsearch.utils.Constants;
 import textsearch.utils.Interpreter;
+import textsearch.utils.Tokenizer;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 /**
+ * Defines the public API(s) exposed by this application
  * Created by cganoo on 28/01/15.
  */
 @Controller
@@ -47,10 +49,15 @@ public class Search {
     @Autowired
     private QueryParser queryParser;
 
+
     /**
-     * @param document
-     * @param query
-     * @return
+     * The generateSnippets() API
+     * @param searchEngine determines searchEngine to use
+     * @param highlightStrategy determines the relvancy of returned results
+     * @param document the document to scan
+     * @param query the word/phrase to match
+     * @return string containing the matched string
+     * @throws SearchException
      */
     public String generateSnippets(final String searchEngine, final String highlightStrategy, final String document, final String query) throws SearchException {
 
@@ -89,11 +96,12 @@ public class Search {
     }
 
     /**
-     * @param tokenMap
-     * @param query
-     * @return
+     * Private method containing logic for the default searchEngine
+     * @param tokenMap a map representing tokenized document to search in
+     * @param query the word/phrase to match
+     * @return list of integers representing matched positions in the tokenMap
      */
-    public List<Integer> defaultSearch(final Map<Integer, String> tokenMap, final String query) {
+    private List<Integer> defaultSearch(final Map<Integer, String> tokenMap, final String query) {
 
         log.info("Generating relevant match ...");
 
@@ -113,12 +121,13 @@ public class Search {
     }
 
     /**
-     * @param tokenMap
-     * @param query
-     * @return
+     * Private method containing logic for the lucene searchEngine
+     * @param tokenMap a map representing tokenized document to search in
+     * @param query the word/phrase to match
+     * @return list of integers representing matched positions in the tokenMap
      * @throws SearchException
      */
-    public List<Integer> luceneSearch(final Map<Integer, String> tokenMap, final String query) throws SearchException {
+    private List<Integer> luceneSearch(final Map<Integer, String> tokenMap, final String query) throws SearchException {
 
         log.info("Generating relevant match using lucene ...");
 
@@ -154,9 +163,10 @@ public class Search {
     }
 
     /**
-     * @param w
-     * @param id
-     * @param content
+     * Private utility method to write lucene indexes
+     * @param w lucene indexWriter
+     * @param id document id
+     * @param content document content
      * @throws IOException
      */
     private void indexDoc(IndexWriter w, String id, String content) throws IOException {
@@ -167,7 +177,12 @@ public class Search {
     }
 
     /**
-     * Searches for the given string in the "content" field
+     * Private utility method to carry out lucene search
+     * @param searcher lucene indexSearcher
+     * @param queryString string to search
+     * @return list of integers representing matched ids
+     * @throws ParseException
+     * @throws IOException
      */
     private List<Integer> search(IndexSearcher searcher, String queryString)
             throws ParseException, IOException {

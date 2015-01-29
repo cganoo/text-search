@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 /**
+ * The Application itself. Contains a java-default entry point
  * Created by cganoo on 28/01/15.
  */
 @Configuration

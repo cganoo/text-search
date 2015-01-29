@@ -2,7 +2,6 @@ package textsearch.lucene;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -22,6 +21,8 @@ import textsearch.utils.Constants;
 import java.io.IOException;
 
 /**
+ * A configuration class to define beans needed by the lucene search engine
+ * Some lucene classes are marked deprecated but this has no critical impact for our usecase.
  * Created by cganoo on 28/01/15.
  */
 @Configuration
@@ -47,6 +48,11 @@ public class LuceneConfig {
         return writer;
     }
 
+    /*
+     * Lazily instantiate the indexSearcher bean since it needs on the indexes created by indexWriter.
+     * Normally these would be available for known documents.
+     * However in our case the user supplies them at start time.
+     */
     @Bean(name = "indexSearcher")
     @DependsOn("ramDirectory")
     @Lazy

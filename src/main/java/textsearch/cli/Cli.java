@@ -26,12 +26,14 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
+ * A custom class to handle basic CLI operations modelled on top of Apache Commons CLI
  * Created by cganoo on 28/01/15.
  */
 @Controller
 public class Cli implements CommandLineRunner {
     final static Logger log = LoggerFactory.getLogger(Cli.class);
 
+    /* For determining the output file name */
     final Joiner joiner = Joiner.on("_").skipNulls();
     Calendar cal = Calendar.getInstance();
     SimpleDateFormat sdf = new SimpleDateFormat("HH_mm_ss");
@@ -54,15 +56,15 @@ public class Cli implements CommandLineRunner {
 
         this.args = args;
 
-        /* Define necessary options */
+        /* Define necessary CLI options */
         Option help = new Option("h", "help", false, "show help.");
-        Option search = OptionBuilder.withArgName("searchEngine documentFile queryFile")
+        Option search = OptionBuilder.withArgName("searchEngine highlightStrategy documentFile queryFile")
                 .hasArgs(Constants.SEARCH_ARG_NUMBER)
                 .withValueSeparator(Constants.SEARCH_ARG_SEPARATOR)
                 .withDescription("textsearch.search for query in document using the specified searchEngine and highlight strategy")
                 .create("search");
 
-        /* Register the defined options */
+        /* Register the defined CLI options */
         this.options.addOption(help);
         this.options.addOption(search);
 
@@ -71,7 +73,7 @@ public class Cli implements CommandLineRunner {
     }
 
     /**
-     * Private utility method for validating cmd line options and applying business rules
+     * Private utility method for validating CLI options and applying business rules
      * to them.
      */
     private void parse() {
@@ -151,7 +153,7 @@ public class Cli implements CommandLineRunner {
     }
 
     /**
-     * Convenience utility method to display correct CLI usage
+     * Private convenience utility method to display correct CLI usage
      */
     private void help() {
         /* Automatically generate the help statement */
@@ -159,6 +161,15 @@ public class Cli implements CommandLineRunner {
         formatter.printHelp("Cli", options, true);
     }
 
+    /**
+     * Private convenience utility method to write the generated results as a file on disk
+     * @param fileName
+     * @param searchEngine
+     * @param highlightStrategy
+     * @param document
+     * @param query
+     * @param match
+     */
     private void outputToFile(final String fileName, final String searchEngine, final String highlightStrategy, final String document, final String query, final String match) {
         log.info("Attempting to store output at {}", fileName);
         try {

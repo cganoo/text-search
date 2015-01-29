@@ -11,12 +11,20 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * This class implements strategies to make a relevant match given a set of matching documents
  * Created by cganoo on 28/01/15.
  */
 @Controller
 public class Interpreter {
     final static Logger log = LoggerFactory.getLogger(Interpreter.class);
 
+    /**
+     * Implements logic for supported highlight strategies
+     * @param highlightStrategy how to interpret results
+     * @param matchIndex list of integers indicating matched positions based on some searchEngine
+     * @param tokenMap tokenized document to search in
+     * @return relevant match string
+     */
     public String interpret(final String highlightStrategy, final List<Integer> matchIndex, Map<Integer, String> tokenMap) {
 
         final StringBuilder sb = new StringBuilder();

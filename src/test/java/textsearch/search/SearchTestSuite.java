@@ -14,7 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import textsearch.api.Search;
-import textsearch.api.Tokenizer;
+import textsearch.utils.Tokenizer;
 import textsearch.exceptions.NoMatchFoundException;
 import textsearch.utils.Constants;
 import textsearch.utils.Interpreter;
