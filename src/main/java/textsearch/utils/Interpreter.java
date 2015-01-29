@@ -1,12 +1,14 @@
 package textsearch.utils;
 
-import org.springframework.stereotype.Controller;
-import com.amazonaws.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 import textsearch.exceptions.NoMatchFoundException;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by cganoo on 28/01/15.
@@ -42,13 +44,13 @@ public class Interpreter {
              *  - distinct: Return only those document tokens indicated by the matched tokens
              */
             switch(highlightStrategy) {
-                case "interpolated":
+                case Constants.HIGHLIGHT_STRATEGY_INTERPOLATED:
                     for (int i = Collections.min(matchIndex); i <= Collections.max(matchIndex); i++) {
                         sb.append(tokenMap.get(i));
                         sb.append(" ");
                     }
                     break;
-                case "distinct":
+                case Constants.HIGHLIGHT_STRATEGY_DISTINCT:
                     for (int i : matchIndex) {
                         sb.append(tokenMap.get(i));
                         sb.append(" ");

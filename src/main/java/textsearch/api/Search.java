@@ -72,12 +72,12 @@ public class Search {
 
         final List<Integer> matchIndex;
 
-        log.info("Adjusting search strategy based on the specified searchEngine ...");
+        log.info("Adjusting textsearch.search strategy based on the specified searchEngine ...");
         switch (searchEngine) {
-            case "default":
+            case Constants.SEARCH_ENGINE_DEFAULT:
                 matchIndex = defaultSearch(tokenMap, query);
                 break;
-            case "lucene":
+            case Constants.SEARCH_ENGINE_LUCENE:
                 matchIndex = luceneSearch(tokenMap, query);
                 break;
             default:
@@ -130,7 +130,6 @@ public class Search {
 
             /*
              * Try to commit and close the writer
-             * TODO: Investigate spurious NPEs with this operation coming from lucene
              */
             try {
                 indexWriter.commit();
@@ -143,11 +142,10 @@ public class Search {
                 /*
                  * If index writes fail, then segments* file will not be available in RAMDirectory
                  * This will cause indexSearcher bean creation to fail.
-                 * This needs deeper investigation into lucene internals.
-                 * If this occurs, indicate the error and ask user to try 'default' search engine
+                 * If this occurs, indicate the error and ask user to try 'default' textsearch.search engine
                  */
-                log.error("Encountered NPE when committing/closing lucene indexWriter. Please try using 'default' search engine instead of lucene ...");
-                throw new SearchException("Index writes failed to RAMDirectory. Please try using 'default' search engine instead");
+                log.error("Encountered NPE when committing/closing lucene indexWriter. Please try using 'default' textsearch.search engine instead of lucene ...");
+                throw new SearchException("Index writes failed to RAMDirectory. Please try using 'default' textsearch.search engine instead");
             }
         } catch (IOException | ParseException e) {
             log.error("Encountered exception when searching with lucene [{}]", e.getMessage());
@@ -183,7 +181,7 @@ public class Search {
         ScoreDoc[] hits = collector.topDocs().scoreDocs;
 
         int hitCount = collector.getTotalHits();
-        log.info("Lucene Logs: search hitCount: {}", hitCount);
+        log.info("Lucene Logs: textsearch.search hitCount: {}", hitCount);
 
         /* Examine the Hits object to see if there were any matches */
 

@@ -20,6 +20,13 @@ targetCompatibility = 1.7
 
 version = '1.0'
 
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'text-search',
+                   'Implementation-Version': version
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -28,13 +35,26 @@ configurations.all {
     exclude module: 'sl4fj-simple'
 }
 
+sourceSets {
+    main {
+        java {
+            srcDir 'textsearch'
+        }
+    }
+
+    test {
+        java {
+            srcDirs = ["textsearch"]
+        }
+    }
+}
+
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter:1.2.1.RELEASE'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.3.2'
     compile 'org.apache.commons:commons-math3:3.4.1'
     compile 'com.google.guava:guava:17.0'
     compile 'com.google.code.gson:gson:2.2.4'
-    compile 'com.amazonaws:aws-java-sdk:1.9.16'
     compile 'commons-cli:commons-cli:1.2'
     compile 'org.apache.lucene:lucene-core:4.10.3'
     compile 'org.apache.lucene:lucene-highlighter:4.10.3'
@@ -45,6 +65,14 @@ dependencies {
     testCompile 'org.springframework:spring-test:3.2.13.RELEASE'
     testCompile 'org.mockito:mockito-all:1.10.19'
     testCompile 'org.testng:testng:6.8.8'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
 }
 
 eclipse {

@@ -1,0 +1,14 @@
+##### SearchEngine #####
+lucene
+
+##### Highlight Strategy #####
+interpolated
+
+##### Document #####
+Our luxury loft-style apartments were constructed as condominiums, so your new residence will have: Solid floors and walls (this will be the quietest apartment you've EVER lived in); Premium stainless steel designer appliances; Distinctive accent walls and hardwood flooring; A kitchen that most chefs would drool over with easy to clean gas stove and countertops; Walk in closets with built in storage; Full size washer and dryer in each apartment home. In addition, all residents will enjoy use of our top-notch amenities, including reserved parking, cutting-edge fitness center, wireless internet cafe/business center, and rooftop lounge to soak up the sun!
+
+##### Query ##### 
+kitchen
+
+##### Relevant Match ##### 
+A kitchen that most chefs would drool over with easy to clean gas stove and countertops;

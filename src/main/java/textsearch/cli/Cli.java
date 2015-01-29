@@ -59,7 +59,7 @@ public class Cli implements CommandLineRunner {
         Option search = OptionBuilder.withArgName("searchEngine documentFile queryFile")
                 .hasArgs(Constants.SEARCH_ARG_NUMBER)
                 .withValueSeparator(Constants.SEARCH_ARG_SEPARATOR)
-                .withDescription("search for query in document using the specified searchEngine and highlight strategy")
+                .withDescription("textsearch.search for query in document using the specified searchEngine and highlight strategy")
                 .create("search");
 
         /* Register the defined options */
@@ -87,7 +87,7 @@ public class Cli implements CommandLineRunner {
             if (cmd.hasOption(Constants.OPTION_HELP_SHORT)) {
                 help();
             }
-             /* Rules for the 'search' option */
+             /* Rules for the 'textsearch.search' option */
             else if (cmd.hasOption(Constants.OPTION_SEARCH)) {
 
                 /* Retrieve the user supplied arguments */
@@ -95,15 +95,15 @@ public class Cli implements CommandLineRunner {
 
                 /* Basic validation */
                 if (searchParams == null || searchParams.length != Constants.SEARCH_ARG_NUMBER) {
-                    log.error("Refusing to apply search functionality for illegal command line arguments");
+                    log.error("Refusing to apply textsearch.search functionality for illegal command line arguments");
                     /* Be nice and display the expected usage */
                     help();
-                    throw new IllegalCliOptionException("Refusing to apply search functionality for illegal command line arguments");
+                    throw new IllegalCliOptionException("Refusing to apply textsearch.search functionality for illegal command line arguments");
                 }
 
                 for (final String s : searchParams) {
                     if (StringUtils.isEmpty(s)) {
-                        throw new IllegalArgumentException("Refusing to apply search functionality for malformed input");
+                        throw new IllegalArgumentException("Refusing to apply textsearch.search functionality for malformed input");
                     }
                 }
 
@@ -129,7 +129,7 @@ public class Cli implements CommandLineRunner {
                 final String document = StringUtils.join(documentContents, ' ');
                 final String query = StringUtils.join(queryContents, ' ');
 
-                /* Delegate to the search API for generating relevant match */
+                /* Delegate to the textsearch.search API for generating relevant match */
                 final String generatedSnippet = search.generateSnippets(searchEngine, highlightStrategy, document, query);
 
                 /* Display the generated relevant match */

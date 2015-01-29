@@ -1,4 +1,4 @@
-package cli;
+package textsearch.cli;
 
 import org.junit.*;
 
@@ -6,8 +6,6 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import textsearch.cli.Cli;
-import textsearch.exceptions.IllegalCliOptionException;
 import textsearch.exceptions.UnsupportedCliOptionException;
 
 

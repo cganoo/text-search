@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"textsearch", "textsearch.api", "textsearch.cli", "textsearch.utils"})
+@ComponentScan(basePackages = {"textsearch.lucene", "textsearch.api", "textsearch.cli", "textsearch.utils"})
 public class Application {
 
     /* Application entry point */

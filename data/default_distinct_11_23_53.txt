@@ -1,0 +1,14 @@
+##### SearchEngine #####
+default
+
+##### Highlight Strategy #####
+distinct
+
+##### Document #####
+Sun rises in the east;not in the west; but north is where we want to go; not west!
+
+##### Query ##### 
+west
+
+##### Relevant Match ##### 
+not in the west; not west!
