@@ -90,7 +90,7 @@ It is recommended to also use the following for experimenting with the source co
 
 ### License
 
-text-textsearch.search is licensed under the MIT license. It is primarily intended for fun and instructive purposes.
+text-search is licensed under the MIT license. It is primarily intended for fun and instructive purposes.
 Use this at your own risk.
 
 ### Credit
