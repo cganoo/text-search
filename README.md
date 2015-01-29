@@ -1,9 +1,16 @@
-# text-search
+# text-search [![Build Status](https://travis-ci.org/cganoo/text-search.svg?branch=master)](https://travis-ci.org/cganoo/text-search)
 
-[![Build Status](https://travis-ci.org/cganoo/text-search.svg?branch=master)](https://travis-ci.org/cganoo/text-search)
+An in-memory implementation of relevant text search
 
 ## How to use this?
 
+### Dependencies
+
+It is recommended to satisfy the following dependencies:
+
+* [Git](http://git-scm.com/downloads)
+* [Java SE 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
+	
 ### Use the pre-compiled jar
 
 ### Build from the source
@@ -15,9 +22,11 @@
 ### Command Line Options
 
 * `-help` : Display usage
-* `-search searchEngine document query` : find relevant match in the specified document for the specified query and using the specified searchEngine
+* `-search searchEngine highlightStrategy document query` : find relevant match in the document for the query by using the  searchEngine and the highlightStrategy
 
 ### Usage Example
+
+### Architecture
 
 ### License
 
@@ -26,8 +35,8 @@ Use this at your own risk.
 
 ### Credit
 
-The original motivation for text-search was due to converstaions with some awesome engineers at [ApartmentList.com](https://www.apartmentlist.com).
-Source code developed by below mentioned author alone.
+The original motivation for text-search came from conversations with some awesome engineers at [ApartmentList.com](https://www.apartmentlist.com).
+Source code was developed by the author alone.
 
 ### Author
 
