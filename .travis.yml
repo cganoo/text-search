@@ -1,1 +1,8 @@
 language: java
+jdk: oraclejdk7
+
+branches:
+      only:
+        - master
+before_install:
+      - chmod +x gradlew
