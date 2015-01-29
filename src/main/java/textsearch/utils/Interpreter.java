@@ -15,7 +15,7 @@ import java.util.*;
 public class Interpreter {
     final static Logger log = LoggerFactory.getLogger(Interpreter.class);
 
-    public String interpret(final List<Integer> matchIndex, Map<Integer, String> tokenMap) {
+    public String interpret(final String highlightStrategy, final List<Integer> matchIndex, Map<Integer, String> tokenMap) {
 
         final StringBuilder sb = new StringBuilder();
 
@@ -35,13 +35,27 @@ public class Interpreter {
             /* Precisely one document token contained the query. Just return that match */
             sb.append(tokenMap.get(matchIndex.get(0)));
         } else {
-            /* Multiple document tokens matched the query.
-             * Return ALL document tokens in the range indicated by the matched tokens (inclusive)
-             * */
-            for (int i = Collections.min(matchIndex); i <= Collections.max(matchIndex); i++) {
-                sb.append(tokenMap.get(i));
-                sb.append(" ");
+            /*
+             * Highlight strategy governs what portions of the matched document are returned as 'relevant' match.
+             * Here multiple document tokens matched the query:
+             *  - interpolated: Return ALL document tokens in the range indicated by the matched tokens (inclusive)
+             *  - distinct: Return only those document tokens indicated by the matched tokens
+             */
+            switch(highlightStrategy) {
+                case "interpolated":
+                    for (int i = Collections.min(matchIndex); i <= Collections.max(matchIndex); i++) {
+                        sb.append(tokenMap.get(i));
+                        sb.append(" ");
+                    }
+                    break;
+                case "distinct":
+                    for (int i : matchIndex) {
+                        sb.append(tokenMap.get(i));
+                        sb.append(" ");
+                    }
+                    break;
             }
+
         }
         return StringUtils.trim(sb.toString());
     }

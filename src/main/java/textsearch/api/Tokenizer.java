@@ -21,20 +21,18 @@ public class Tokenizer {
     /**
      *
      * @param document
-     * @param query
      * @return
      */
-    public Map<Integer, String> getTokenMap(final String document, final String query) {
+    public Map<Integer, String> getTokenMap(final String document) {
         final Map<Integer, String> tokenMap = Maps.newHashMap();
 
         /* Tokenize the document and query strings */
         final List<String> docToks = tokenize(document, Constants.PATTERN_DOCUMENT_DELIMITERS);
-        final List<String> queryToks = tokenize(query, Constants.PATTERN_QUERY_DELIMITERS);
-        
+
         /* Populate document tokens in the Tokenization map */
-        for(int i = 1; i < docToks.size(); i++ ) {
+        for(int i = 0; i < docToks.size(); i++ ) {
             final String tokenValue = docToks.get(i);
-            tokenMap.put(i, tokenValue);
+            tokenMap.put((i + 1), tokenValue);
         }
         return tokenMap;
     }

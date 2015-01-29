@@ -97,6 +97,13 @@
     <orderEntry type="library" scope="TEST" name="Gradle: mockito-all-1.10.19" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: spring-test-3.2.13.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: commons-logging-1.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: lucene-core-4.10.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: lucene-highlighter-4.10.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: lucene-memory-4.10.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: lucene-queries-4.10.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: lucene-analyzers-common-4.10.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: lucene-queryparser-4.10.3" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: lucene-sandbox-4.10.3" level="project" />
   </component>
 </module>
 
