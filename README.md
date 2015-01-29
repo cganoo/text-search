@@ -71,11 +71,26 @@ It is recommended to also use the following for experimenting with the source co
 	##### Relevant Match #####
 	Premium stainless steel designer appliances; Distinctive accent walls and hardwood flooring; A kitchen that most chefs would drool over with easy to clean gas stove and countertops;
 	
-### Architecture
+### Highlights 
+
+* <b>Application description</b>: A stand-alone java app
+* <b>Lifecycle management</b>: [Spring Boot](http://projects.spring.io/spring-boot/) is used along with annotation-based configuration
+* <b>User Interface</b>: A CLI is provided where the user can specify search options. File-based input/output is used for data
+* <b>Build and Dependency management</b>: Gradle is used for this
+* <b>Algoithms used</b>: A custom in-memory exhaustive search algorithm working on indexes (tokenized fragments) is implemented. The app also integrates with Lucene for an alternative algorithm. 
+* <b>Unit Tests</b>: A few representative Junit4 unit tests run with Spring are included.
+
+### Future Work
+
+* <b>Caching</b>: Obvious benefits, since a real-life usecase will have docuemnts to search for, available offline for pre-computation. CCould be implemented as file-based indexing in Lucene instead of RAM-based or by integrate with a separate database (easiest would be a hosted RDBMS or DynamoDB from  AWS)
+* <b>String-matching variants</b>: The usecase could be tweaked to optimize for search location rather than surrounding fragments a variety of string searching algorithms could be implemented
+* <b>Fuzzy matches</b>: The usecase could be tweaked to allow fuzzy matching (e.g. keychain for kitchen)
+* <b>Improve Lucene algorithm</b>: Leverage lucene-highlighter to get matching fragments
+* <b>Cloud search</b>: Integrate with AWS Cloudsearch or similar offering from Google Cloud Platform (GCP)
 
 ### License
 
-text-textsearch.search is licensed under the MIT license. It is primarily intended for fun and instructive purposes.
+text-search is licensed under the MIT license. It is primarily intended for fun and instructive purposes.
 Use this at your own risk.
 
 ### Credit
